@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assets>
+  <Asset Id="1" Name="Generic" Type="RPGStatCollectionAsset">
+    <Stat AssetType="RPGVitalAsset" BaseValue="100" CategoryId="1" AssignedStatId="1">
+      <StatScaler Type="RPGStatScalerLinearAsset" Slope="100" Offset="99" />
+    </Stat>
+    <Stat AssetType="RPGVitalAsset" BaseValue="100" CategoryId="1" AssignedStatId="2">
+      <StatScaler Type="RPGStatScalerLinearAsset" Slope="100" Offset="99" />
+    </Stat>
+    <Stat AssetType="RPGAttributeAsset" BaseValue="10" CategoryId="1" AssignedStatId="3">
+      <StatScaler Type="RPGStatScalerLinearAsset" Slope="10" Offset="9" />
+    </Stat>
+    <Stat AssetType="RPGAttributeAsset" BaseValue="10" CategoryId="1" AssignedStatId="4">
+      <StatScaler Type="RPGStatScalerLinearAsset" Slope="10" Offset="9" />
+    </Stat>
+    <Stat AssetType="RPGAttributeAsset" BaseValue="10" CategoryId="1" AssignedStatId="5">
+      <StatScaler Type="RPGStatScalerLinearAsset" Slope="10" Offset="9" />
+    </Stat>
+    <Stat AssetType="RPGAttributeAsset" BaseValue="0" CategoryId="1" AssignedStatId="6">
+      <StatScaler Type="RPGStatScalerLinearAsset" Slope="10" Offset="9" />
+    </Stat>
+  </Asset>
+</Assets>

@@ -8,6 +8,7 @@ using GameSystems.StatSystem;
 using UnityEngine;
 using UnityEngine.AI;
 using GameSystems.Entities.Database;
+using RPGSystems.StatSystem;
 
 namespace GameSystems.Entities{
 	/// <summary>
@@ -198,6 +199,19 @@ namespace GameSystems.Entities{
 		}
 
 		/// <summary>
+		/// a reference to a stat collection associated to a this entity
+		/// </summary>
+		[SerializeField]
+		private RPGStatCollection _statCollection;
+		public RPGStatCollection StatCollection{
+			get{ 
+				if(_statCollection == null)
+					_statCollection = GetComponent<RPGStatCollection> ();
+				return _statCollection;
+			}
+		}
+
+		/// <summary>
 		/// whether the entity is being controlled by player (true) or AI (false) 
 		/// </summary>
 		private bool _controlled = false;
@@ -213,6 +227,8 @@ namespace GameSystems.Entities{
 				Perception.OnAlerted.AddListener (OnAlerted);
 				Perception.OnUnalerted.AddListener (OnUnalerted);
 			}
+			if (StatCollection != null)
+				StatCollection.SetupCollection ();
 		}
 		
 		// Update is called once per frame

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assets>
+  <Asset Id="1" Name="Health" Type="StatTypeAsset">
+    <NameShort>HP</NameShort>
+    <Description>Entity's health point</Description>
+    <Icon Path="False" />
+  </Asset>
+  <Asset Id="2" Name="Ether" Type="StatTypeAsset">
+    <NameShort>EP</NameShort>
+    <Description>Entity's energy point</Description>
+    <Icon Path="False" />
+  </Asset>
+  <Asset Id="3" Name="Power" Type="StatTypeAsset">
+    <NameShort>POW</NameShort>
+    <Description>Entity's raw strength</Description>
+    <Icon Path="False" />
+  </Asset>
+  <Asset Id="4" Name="Mind" Type="StatTypeAsset">
+    <NameShort>MND</NameShort>
+    <Description>Entity's magic power</Description>
+    <Icon Path="False" />
+  </Asset>
+  <Asset Id="5" Name="Defense" Type="StatTypeAsset">
+    <NameShort>DEF</NameShort>
+    <Description>Entity's defense against attack</Description>
+    <Icon Path="False" />
+  </Asset>
+  <Asset Id="6" Name="Spirit" Type="StatTypeAsset">
+    <NameShort>SPR</NameShort>
+    <Description>Entity's defense against magic attack</Description>
+    <Icon Path="False" />
+  </Asset>
+</Assets>
