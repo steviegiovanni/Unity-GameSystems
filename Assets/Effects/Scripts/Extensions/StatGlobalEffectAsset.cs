@@ -10,9 +10,9 @@ namespace GameSystems.Effects{
 		public bool IncludeSelf { get; set;}
 
 		public float Modifier { get; set;}
-		public string StatBase {get;set;}
+		public int StatBase {get;set;}
 		public int FlatValue{ get; set;}
-		public string TargetStat{ get; set;}
+		public int TargetStat{ get; set;}
 
 		public override Effect CreateInstance(){
 			return new StatGlobalEffect (this);
@@ -45,9 +45,9 @@ namespace GameSystems.Effects{
 					TargetType = reader.GetAttrInt ("TargetType", 0);
 					IncludeSelf = reader.GetBoolAttribute ("IncludeSelf", true);
 					Modifier = reader.GetAttrFloat("Modifier",0.0f);
-					StatBase = reader.GetAttrString ("StatBase", "");
+					StatBase = reader.GetAttrInt ("StatBase", 0);
 					FlatValue = reader.GetAttrInt ("FlatValue", 0);
-					TargetStat = reader.GetAttrString ("TargetStat", "");
+					TargetStat = reader.GetAttrInt ("TargetStat", 0);
 				}
 				break;
 			}

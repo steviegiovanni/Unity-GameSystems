@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEditor;
 using UtilitySystems.XmlDatabase.Editor;
+using RPGSystems.StatSystem.Database;
+using RPGSystems.StatSystem.Editor;
 
 namespace GameSystems.Effects.Editor{
 	public class TargetStatEffectEditorExtension : EditorExtension {
@@ -17,13 +19,29 @@ namespace GameSystems.Effects.Editor{
 			TargetStatEffectAsset effectAsset = asset as TargetStatEffectAsset;
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Source Stat Name", GUILayout.Width (150));
-			effectAsset.StatBase= EditorGUILayout.TextField (effectAsset.StatBase);
+			GUILayout.Label ("Source Stat Type", GUILayout.Width (150));
+			//effectAsset.StatBase= EditorGUILayout.TextField (effectAsset.StatBase);
+
+			var baseStatType = RPGStatTypeDatabase.Instance.Get(effectAsset.StatBase, true);
+			if (GUILayout.Button(baseStatType == null ? "Assign Type" : baseStatType.Name, EditorStyles.toolbarButton, GUILayout.Width(100))) {
+				XmlDatabaseEditorUtility.ShowContext(RPGStatTypeDatabase.Instance, (statTypeAsset) => {
+					effectAsset.StatBase = statTypeAsset.Id;
+				}, typeof(RPGStatTypeWindow));
+			}
+
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Target Stat Name", GUILayout.Width (150));
-			effectAsset.TargetStat= EditorGUILayout.TextField (effectAsset.TargetStat);
+			GUILayout.Label ("Target Stat Type", GUILayout.Width (150));
+			//effectAsset.TargetStat= EditorGUILayout.TextField (effectAsset.TargetStat);
+
+			var targetStatType = RPGStatTypeDatabase.Instance.Get(effectAsset.StatBase, true);
+			if (GUILayout.Button(targetStatType == null ? "Assign Type" : targetStatType.Name, EditorStyles.toolbarButton, GUILayout.Width(100))) {
+				XmlDatabaseEditorUtility.ShowContext(RPGStatTypeDatabase.Instance, (statTypeAsset) => {
+					effectAsset.TargetStat = statTypeAsset.Id;
+				}, typeof(RPGStatTypeWindow));
+			}
+
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();

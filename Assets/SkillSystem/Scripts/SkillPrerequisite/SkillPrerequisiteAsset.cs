@@ -4,7 +4,7 @@ using UtilitySystems.XmlDatabase;
 namespace GameSystems.SkillSystem{
 	public class SkillPrerequisiteAsset : IXmlOnSaveAsset, IXmlOnLoadAsset  {
 		public int StatValue { get; set;}
-		public string StatName{ get; set;}
+		public int StatName{ get; set;}
 
 		public virtual SkillPrerequisite CreateInstance(){
 			return new SkillPrerequisite (this);
@@ -18,7 +18,7 @@ namespace GameSystems.SkillSystem{
 			case "Prerequisite":
 				{
 					StatValue = reader.GetAttrInt ("StatValue", 0);
-					StatName = reader.GetAttrString ("StatName", "");
+					StatName = reader.GetAttrInt ("StatName", 0);
 				}
 				break;
 			}

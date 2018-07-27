@@ -1,4 +1,4 @@
-﻿using GameSystems.StatSystem;
+﻿using RPGSystems.StatSystem;
 
 namespace GameSystems.GambitSystem{
 	/// <summary>

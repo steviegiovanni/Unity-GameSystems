@@ -4,7 +4,7 @@ using UtilitySystems.XmlDatabase;
 namespace GameSystems.GambitSystem{
 	public class StatGambitConditionAsset : GambitConditionAsset {
 		public float StatValue { get; set;}
-		public string StatName{ get; set;}
+		public int StatName{ get; set;}
 
 		public override GambitCondition CreateInstance(){
 			return new StatGambitCondition (this);
@@ -19,7 +19,7 @@ namespace GameSystems.GambitSystem{
 			case "Condition":
 				{
 					StatValue = reader.GetAttrFloat ("StatValue", 0.0f);
-					StatName = reader.GetAttrString ("StatName", "");
+					StatName = reader.GetAttrInt ("StatName", 0);
 				}
 				break;
 			default:

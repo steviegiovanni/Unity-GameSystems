@@ -11,9 +11,9 @@ namespace GameSystems.Effects{
 		public float Radius{get; set;}
 
 		public float Modifier { get; set;}
-		public string StatBase {get;set;}
+		public int StatBase {get;set;}
 		public int FlatValue{ get; set;}
-		public string TargetStat{ get; set;}
+		public int TargetStat{ get; set;}
 
 		public override Effect CreateInstance(){
 			return new PositionAOEStatEffect (this);
@@ -48,9 +48,9 @@ namespace GameSystems.Effects{
 					IncludeSelf = reader.GetBoolAttribute ("IncludeSelf", true);
 					Radius = reader.GetAttrFloat ("Radius", 0.0f);
 					Modifier = reader.GetAttrFloat("Modifier",0.0f);
-					StatBase = reader.GetAttrString ("StatBase", "");
+					StatBase = reader.GetAttrInt ("StatBase", 0);
 					FlatValue = reader.GetAttrInt ("FlatValue", 0);
-					TargetStat = reader.GetAttrString ("TargetStat", "");
+					TargetStat = reader.GetAttrInt ("TargetStat", 0);
 				}
 				break;
 			}

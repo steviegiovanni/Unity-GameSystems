@@ -1,4 +1,4 @@
-﻿using GameSystems.StatSystem;
+﻿using RPGSystems.StatSystem;
 
 namespace GameSystems.SkillSystem{
 	/// <summary>
@@ -8,8 +8,8 @@ namespace GameSystems.SkillSystem{
 		/// <summary>
 		/// The stat name for the prerequisite
 		/// </summary>
-		private string _statName;
-		public string StatName{
+		private RPGStatType _statName;
+		public RPGStatType StatName{
 			get{ return _statName;}
 			set{ _statName = value;}
 		}
@@ -27,7 +27,7 @@ namespace GameSystems.SkillSystem{
 		/// constructor
 		/// </summary>
 		public SkillPrerequisite(SkillPrerequisiteAsset asset){
-			StatName = asset.StatName;
+			StatName = (RPGStatType)asset.StatName;
 			StatValue = asset.StatValue;
 		}
 
@@ -35,7 +35,7 @@ namespace GameSystems.SkillSystem{
 		/// called when a skill is used on the stat owner
 		/// </summary>
 		public void ApplyPrerequisite(IHasStats affected){
-			affected.ModifyStat (StatName, -StatValue);
+			//affected.ModifyStat (StatName, -StatValue);
 		}
 
 		/// <summary>
@@ -44,6 +44,7 @@ namespace GameSystems.SkillSystem{
 		public bool CheckPrerequisite(IHasStats statOwner){
 			int statValue = 0;
 			if(statOwner.TryGetStatValue(StatName,out statValue)){
+			//if(statOwner.TryGetStatValue("health",out statValue)){
 				if (statValue >= StatValue)
 					return true;
 				else

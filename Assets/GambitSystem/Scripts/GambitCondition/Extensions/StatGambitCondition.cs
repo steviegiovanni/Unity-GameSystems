@@ -1,10 +1,12 @@
-﻿namespace GameSystems.GambitSystem{
+﻿using RPGSystems.StatSystem;
+
+namespace GameSystems.GambitSystem{
 	/// <summary>
 	/// condition where a specific stat is considered
 	/// </summary>
 	public class StatGambitCondition : GambitCondition {
-		private string _statName;
-		public string StatName{
+		private RPGStatType _statName;
+		public RPGStatType StatName{
 			get{ return _statName;}
 			set{ _statName = value;}
 		}
@@ -16,7 +18,7 @@
 		}
 
 		public StatGambitCondition (StatGambitConditionAsset asset) : base (asset){
-			StatName = asset.StatName;
+			StatName = (RPGStatType)asset.StatName;
 			StatValue = asset.StatValue;
 		}
 	}

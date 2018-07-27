@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using GameSystems.PerceptionSystem;
-using GameSystems.StatSystem;
+using RPGSystems.StatSystem;
 
 namespace GameSystems.Effects{
 	/// <summary>
@@ -47,7 +47,7 @@ namespace GameSystems.Effects{
 		{
 			// get the base stat value of the user of this effect
 			int baseValue = 0;
-			if (StatBase != "") { // prevents people forgetting to give a stat base name
+			if (StatBase != 0) { // prevents people forgetting to give a stat base name
 				IHasStats owner = Source.GetOwner ().GetComponent<IHasStats>();
 				if (owner != null) {
 					owner.TryGetStatValue (StatBase, out baseValue); // prevents the case where the statname doesn't exist

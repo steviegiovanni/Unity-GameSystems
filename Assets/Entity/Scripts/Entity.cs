@@ -4,7 +4,6 @@ using GameSystems.LevelSystem;
 using GameSystems.Movement;
 using GameSystems.PerceptionSystem;
 using GameSystems.SkillSystem;
-using GameSystems.StatSystem;
 using UnityEngine;
 using UnityEngine.AI;
 using GameSystems.Entities.Database;
@@ -37,29 +36,29 @@ namespace GameSystems.Entities{
 			set{ _maxHealth = value;}
 		}
 
-		public float GetStatPercentValue (string statName)
+		public float GetStatPercentValue (RPGStatType statName)
 		{
 			return (float)Health / (float)MaxHealth;
 		}
 
-		public bool TryGetStatPercentValue (string statName, out float statValue){
+		public bool TryGetStatPercentValue (RPGStatType statName, out float statValue){
 			statValue = (float)Health / (float)MaxHealth;
 			return true;
 		}
 
-		public void ModifyStat(string statName,float modifier, int flatValue, int baseValue){
+		public void ModifyStat(RPGStatType statName,float modifier, int flatValue, int baseValue){
 			Health += (int)(modifier * baseValue + (float)flatValue); 
 		}
 
-		public void ModifyStat(string statName,int value){
+		public void ModifyStat(RPGStatType statName,int value){
 			Health += value; 
 		}
 
-		public int GetStatValue(string statName){
+		public int GetStatValue(RPGStatType statName){
 			return Health;
 		}
 
-		public bool TryGetStatValue(string statName, out int value){
+		public bool TryGetStatValue(RPGStatType statName, out int value){
 			value = Health;
 			return true;
 		}

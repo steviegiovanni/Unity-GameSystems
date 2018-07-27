@@ -9,7 +9,7 @@ using System;
 namespace RPGSystems.StatSystem.Editor {
     public class RPGStatCollectionWindow : XmlDatabaseWindowComplex<RPGStatCollectionAsset> {
         private Vector2 statSelectionScroll = Vector2.zero;
-        private float statSelectionWidth = 200;
+        //private float statSelectionWidth = 200;
 
         private int _selectedStatIndex = -1;
         public int SelectedStatIndex {

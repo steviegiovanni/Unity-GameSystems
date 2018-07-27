@@ -1,4 +1,4 @@
-﻿using GameSystems.StatSystem;
+﻿using RPGSystems.StatSystem;
 
 namespace GameSystems.Effects{
 	/// <summary>
@@ -17,8 +17,8 @@ namespace GameSystems.Effects{
 		/// <summary>
 		/// The owner's stat used as the base value
 		/// </summary>
-		public string _statBase;
-		public string StatBase{
+		public RPGStatType _statBase;
+		public RPGStatType StatBase{
 			get{ return _statBase;}
 			set{ _statBase = value;}
 		}
@@ -35,8 +35,8 @@ namespace GameSystems.Effects{
 		/// <summary>
 		/// The target stat
 		/// </summary>
-		public string _targetStat;
-		public string TargetStat{
+		public RPGStatType _targetStat;
+		public RPGStatType TargetStat{
 			get{ return _targetStat;}
 			set{ _targetStat = value;}
 		}
@@ -46,16 +46,16 @@ namespace GameSystems.Effects{
 		/// </summary>
 		public TargetStatEffect(TargetStatEffectAsset asset):base(asset){
 			Modifier = asset.Modifier;
-			StatBase = asset.StatBase;
+			StatBase = (RPGStatType)asset.StatBase;
 			FlatValue = asset.FlatValue;
-			TargetStat = asset.TargetStat;
+			TargetStat = (RPGStatType)asset.TargetStat;
 		}
 
 		public override void ApplyEffect ()
 		{
 			// get the base stat value of the user of this effect
 			int baseValue = 0;
-			if (StatBase != "") { // prevents people forgetting to give a stat base name
+			if (StatBase != 0) { // prevents people forgetting to give a stat base name
 				IHasStats owner = Source.GetOwner ().GetComponent<IHasStats>();
 				if (owner != null) {
 					owner.TryGetStatValue (StatBase, out baseValue); // prevents the case where the statname doesn't exist

@@ -4,7 +4,7 @@
     <Skill AssetType="TargetSkillAsset" TargetType="2" IncludeSelf="False" Name="Auto1" Cooldown="5" CastTime="0" Range="2" Delay="4" Interruptable="False" Level="1">
       <Effect AssetType="StatGlobalEffectAsset" Delay="2" TargetType="0" IncludeSelf="True" Modifier="0" StatBase="" FlatValue="0" TargetStat="" />
       <Effect AssetType="TargetPrefabEffectAsset" Delay="3" PrefabName="Meteor.prefab" />
-      <Effect AssetType="TargetStatEffectAsset" Delay="0" Modifier="1.2" StatBase="health" FlatValue="2" TargetStat="health" />
+      <Effect AssetType="TargetStatEffectAsset" Delay="0" Modifier="1.2" StatBase="1" FlatValue="2" TargetStat="1" />
     </Skill>
     <Skill AssetType="TargetSkillAsset" TargetType="2" IncludeSelf="False" Name="Auto2" Cooldown="15" CastTime="0" Range="2" Delay="7" Interruptable="False" Level="1">
       <Effect AssetType="EffectAsset" Delay="1" />
@@ -19,21 +19,21 @@
   </Asset>
   <Asset Id="2" Name="test2" Type="SkillCollectionAsset">
     <Skill AssetType="TargetSkillAsset" TargetType="2" IncludeSelf="True" Name="TargetSkill" Cooldown="5" CastTime="0" Range="2" Delay="5" Interruptable="True" Level="0">
-      <Prerequisite StatName="health" StatValue="10" />
-      <Effect AssetType="TargetStatEffectAsset" Delay="2" Modifier="-0.1" StatBase="health" FlatValue="-10" TargetStat="health" />
+      <Prerequisite StatName="1" StatValue="10" />
+      <Effect AssetType="TargetStatEffectAsset" Delay="2" Modifier="-0.1" StatBase="1" FlatValue="-10" TargetStat="1" />
       <Effect AssetType="TargetPrefabEffectAsset" Delay="1" PrefabName="Meteor.prefab" />
-      <Effect AssetType="TargetAOEStatEffectAsset" Delay="4" Modifier="-0.1" StatBase="health" FlatValue="0" TargetStat="health" TargetType="2" IncludeTarget="True" Radius="5" />
+      <Effect AssetType="TargetAOEStatEffectAsset" Delay="4" Modifier="-0.1" StatBase="1" FlatValue="0" TargetStat="1" TargetType="2" IncludeTarget="True" Radius="5" />
     </Skill>
     <Skill AssetType="PositionSkillAsset" Name="PositionSkill" Cooldown="10" CastTime="0" Range="2" Delay="7" Interruptable="False" Level="0">
-      <Prerequisite StatName="health" StatValue="5" />
+      <Prerequisite StatName="1" StatValue="5" />
       <Effect AssetType="PositionPrefabEffectAsset" Delay="3" PrefabName="Meteor.prefab" />
-      <Effect AssetType="PositionAOEStatEffectAsset" Delay="4" TargetType="2" IncludeSelf="True" Radius="20" Modifier="0" StatBase="health" FlatValue="-10" TargetStat="health" />
+      <Effect AssetType="PositionAOEStatEffectAsset" Delay="4" TargetType="2" IncludeSelf="True" Radius="20" Modifier="0" StatBase="1" FlatValue="-10" TargetStat="1" />
       <Effect AssetType="PositionPrefabEffectAsset" Delay="5" PrefabName="Meteor.prefab" />
-      <Effect AssetType="PositionAOEStatEffectAsset" Delay="0" TargetType="2" IncludeSelf="True" Radius="20" Modifier="0" StatBase="health" FlatValue="-5" TargetStat="health" />
+      <Effect AssetType="PositionAOEStatEffectAsset" Delay="0" TargetType="2" IncludeSelf="True" Radius="20" Modifier="0" StatBase="1" FlatValue="-5" TargetStat="1" />
     </Skill>
     <Skill AssetType="SkillAsset" Name="GlobalSkill" Cooldown="15" CastTime="0" Range="10" Delay="15" Interruptable="False" Level="0">
-      <Prerequisite StatName="health" StatValue="5" />
-      <Effect AssetType="StatGlobalEffectAsset" Delay="0" TargetType="2" IncludeSelf="True" Modifier="0" StatBase="health" FlatValue="20" TargetStat="health" />
+      <Prerequisite StatName="1" StatValue="5" />
+      <Effect AssetType="StatGlobalEffectAsset" Delay="0" TargetType="2" IncludeSelf="True" Modifier="0" StatBase="1" FlatValue="20" TargetStat="1" />
     </Skill>
   </Asset>
 </Assets>

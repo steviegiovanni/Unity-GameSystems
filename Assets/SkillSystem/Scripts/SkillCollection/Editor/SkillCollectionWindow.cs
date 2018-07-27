@@ -6,6 +6,8 @@ using UnityEditor;
 using UnityEngine;
 using UtilitySystems.XmlDatabase;
 using UtilitySystems.XmlDatabase.Editor;
+using RPGSystems.StatSystem.Database;
+using RPGSystems.StatSystem.Editor;
 
 namespace GameSystems.SkillSystem.Editor{
 	public class SkillCollectionWindow : XmlDatabaseWindowComplex<SkillCollectionAsset> {
@@ -200,8 +202,16 @@ namespace GameSystems.SkillSystem.Editor{
 					&& EditorUtility.DisplayDialog ("Remove prerequisite", "Are you sure you want to delete the prerequisite?", "Delete", "Cancel")) {
 					skill.Prerequisites.RemoveAt (i);
 				}
-				GUILayout.Label ("StatName", GUILayout.Width (100));
-				prerequisite.StatName = EditorGUILayout.TextField (prerequisite.StatName);
+				GUILayout.Label ("StatType", GUILayout.Width (100));
+				//prerequisite.StatName = EditorGUILayout.TextField (prerequisite.StatName);
+
+				var targetStatType = RPGStatTypeDatabase.Instance.Get(prerequisite.StatName, true);
+				if (GUILayout.Button(targetStatType == null ? "Assign Type" : targetStatType.Name, EditorStyles.toolbarButton, GUILayout.Width(100))) {
+					XmlDatabaseEditorUtility.ShowContext(RPGStatTypeDatabase.Instance, (statTypeAsset) => {
+						prerequisite.StatName = statTypeAsset.Id;
+					}, typeof(RPGStatTypeWindow));
+				}
+
 				GUILayout.Label ("StatValue", GUILayout.Width (100));
 				prerequisite.StatValue = EditorGUILayout.IntField (prerequisite.StatValue);
 				GUILayout.EndHorizontal ();
