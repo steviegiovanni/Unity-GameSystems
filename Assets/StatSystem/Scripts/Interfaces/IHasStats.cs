@@ -9,5 +9,6 @@
 		bool TryGetStatCurrentValue (RPGStatType statName, out float value);
 		void ModifyStat (RPGStatType statName, float value);
 		void ModifyStat (RPGStatType sourceStat, RPGStatType targetStat, float modifier, float flatValue, float baseValue);
+		int GetStatLevel ();
 	}
 }

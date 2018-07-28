@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using GameSystems.GambitSystem;
-using GameSystems.LevelSystem;
 using GameSystems.Movement;
 using GameSystems.PerceptionSystem;
 using GameSystems.SkillSystem;
@@ -20,7 +19,7 @@ namespace GameSystems.Entities{
 	/// IHasLevel      : Specifies that the entity has a levelling component
 	/// </summary>
 	[System.Serializable]
-	public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHasStats, IHasLevel {
+	public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHasStats{
 		#region IHasStats implementation
 		public bool TryGetStatValue(RPGStatType statName, out int value){
 			RPGStat stat = null;
@@ -77,28 +76,10 @@ namespace GameSystems.Entities{
 			}
 		}
 
-		#endregion
-
-
-		#region IHasLevel implementation
-		/// <summary>
-		/// level of this entity
-		/// </summary>
-		private RPGEntityLevel _rpgEntityLevel;
-		public RPGEntityLevel EntityLevel{
-			get{
-				if (_rpgEntityLevel == null) 
-					_rpgEntityLevel = GetComponent<RPGEntityLevel> ();
-				return _rpgEntityLevel;
-			}
-		}
-
-		public int GetLevel ()
-		{
-			if (EntityLevel == null)
-				return 1000;
-			else
-				return EntityLevel.Level;
+		public int GetStatLevel(){
+			if (StatCollection != null)
+				return StatCollection.Level;
+			return 0;
 		}
 
 		#endregion
@@ -258,8 +239,8 @@ namespace GameSystems.Entities{
 
 			// test levelling
 			if (Input.GetKeyUp (KeyCode.Space)) {
-				if (EntityLevel != null)
-					EntityLevel.ModifyExp (50);
+				if (StatCollection != null)
+					StatCollection.ModifyExp (50);
 			}
 		}
 

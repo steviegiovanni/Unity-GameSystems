@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameSystems.SkillSystem;
-using GameSystems.LevelSystem;
+using RPGSystems.StatSystem;
 
 namespace GameSystems.GambitSystem{
 	/// <summary>
@@ -167,11 +167,11 @@ namespace GameSystems.GambitSystem{
 				return;
 			}
 				
-			IHasLevel levelledOwner = Owner.GetComponent<IHasLevel>();
+			IHasStats levelledOwner = Owner.GetComponent<IHasStats>();
 			if (levelledOwner == null) {
 				IsReady = false;
 				return;
-			} else if (levelledOwner.GetLevel () < Skill.RequiredLevel) {
+			} else if (levelledOwner.GetStatLevel () < Skill.RequiredLevel) {
 				IsReady = false;
 				return;
 			}
