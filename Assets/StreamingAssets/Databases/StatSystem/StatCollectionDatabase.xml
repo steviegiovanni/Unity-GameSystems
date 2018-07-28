@@ -16,7 +16,7 @@
     <Stat AssetType="RPGAttributeAsset" BaseValue="10" CategoryId="1" AssignedStatId="5">
       <StatScaler Type="RPGStatScalerLinearAsset" Slope="10" Offset="9" />
     </Stat>
-    <Stat AssetType="RPGAttributeAsset" BaseValue="0" CategoryId="1" AssignedStatId="6">
+    <Stat AssetType="RPGAttributeAsset" BaseValue="10" CategoryId="1" AssignedStatId="6">
       <StatScaler Type="RPGStatScalerLinearAsset" Slope="10" Offset="9" />
     </Stat>
   </Asset>

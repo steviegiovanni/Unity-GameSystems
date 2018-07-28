@@ -71,7 +71,7 @@ namespace GameSystems.Effects{
 					if (percept.Entity != targetSource.GetTarget () || IncludeTarget) {
 						IHasStats target = percept.Entity.GetComponent<IHasStats> ();
 						if (target != null) {
-							target.ModifyStat (TargetStat, Modifier, FlatValue, baseValue);
+							target.ModifyStat (StatBase, TargetStat, Modifier, FlatValue, baseValue);
 						}
 					}
 				}

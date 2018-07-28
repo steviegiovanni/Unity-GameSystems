@@ -4,11 +4,10 @@
 	/// - a function that returns the stat value in percent
 	/// </summary>
 	public interface IHasStats {
-		float GetStatPercentValue (RPGStatType statName);
-		bool TryGetStatPercentValue (RPGStatType statName, out float value); // a way to return false if stat doesn't exist
-		void ModifyStat(RPGStatType statName,float modifier, int flatValue, int baseValue);
-		void ModifyStat (RPGStatType statName, int value);
-		int GetStatValue (RPGStatType statName);
+		bool TryGetStatPercentValue (RPGStatType statName, out float value); 
 		bool TryGetStatValue (RPGStatType statName, out int value);
+		bool TryGetStatCurrentValue (RPGStatType statName, out float value);
+		void ModifyStat (RPGStatType statName, float value);
+		void ModifyStat (RPGStatType sourceStat, RPGStatType targetStat, float modifier, float flatValue, float baseValue);
 	}
 }

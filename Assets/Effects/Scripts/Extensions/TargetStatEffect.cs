@@ -68,7 +68,7 @@ namespace GameSystems.Effects{
 				if (targetSource.GetTarget () != null) {
 					IHasStats target = targetSource.GetTarget ().GetComponent<IHasStats> ();
 					if (target != null) {
-						target.ModifyStat (TargetStat, Modifier, FlatValue, baseValue);
+						target.ModifyStat (StatBase, TargetStat, Modifier, FlatValue, baseValue);
 					}
 				}
 			}

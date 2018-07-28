@@ -22,45 +22,59 @@ namespace GameSystems.Entities{
 	[System.Serializable]
 	public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHasStats, IHasLevel {
 		#region IHasStats implementation
-		[SerializeField]
-		private int _health = 100;
-		public int Health{
-			get{ return _health;}
-			set{ _health = value;}
-		}
-
-		[SerializeField]
-		private int _maxHealth = 100;
-		public int MaxHealth{
-			get{ return _maxHealth;}
-			set{ _maxHealth = value;}
-		}
-
-		public float GetStatPercentValue (RPGStatType statName)
-		{
-			return (float)Health / (float)MaxHealth;
-		}
-
-		public bool TryGetStatPercentValue (RPGStatType statName, out float statValue){
-			statValue = (float)Health / (float)MaxHealth;
-			return true;
-		}
-
-		public void ModifyStat(RPGStatType statName,float modifier, int flatValue, int baseValue){
-			Health += (int)(modifier * baseValue + (float)flatValue); 
-		}
-
-		public void ModifyStat(RPGStatType statName,int value){
-			Health += value; 
-		}
-
-		public int GetStatValue(RPGStatType statName){
-			return Health;
-		}
-
 		public bool TryGetStatValue(RPGStatType statName, out int value){
-			value = Health;
-			return true;
+			RPGStat stat = null;
+			value = 0;
+			if (StatCollection.TryGetStat (statName, out stat)) {
+				value = stat.StatValue;
+				return true;
+			}
+			return false;
+		}
+
+		public bool TryGetStatCurrentValue (RPGStatType statName, out float value){
+			RPGVital stat = null;
+			value = 0;
+			if (StatCollection.TryGetStat<RPGVital> (statName, out stat)) {
+				value = stat.StatValueCurrent;
+				return true;
+			}
+			return false;
+		}
+
+		public bool TryGetStatPercentValue (RPGStatType statName, out float value){
+			RPGVital stat = null;
+			value = 0;
+			if (StatCollection.TryGetStat<RPGVital> (statName, out stat)) {
+				value = stat.StatValueCurrent/stat.StatValue;
+				return true;
+			}
+			return false;
+		}
+
+		public void ModifyStat(RPGStatType sourceStat, RPGStatType targetStat, float modifier, float flatValue, float baseValue){
+			float rawValue = flatValue + modifier * baseValue;
+			float bufferValue = 1.0f;
+			if (sourceStat == RPGStatType.Power) {
+				RPGStat stat = null;
+				if (StatCollection.TryGetStat (RPGStatType.Defense, out stat)) {
+					bufferValue = stat.StatValue;
+				}
+			}else if(sourceStat == RPGStatType.Mind){
+				RPGStat stat = null;
+				if (StatCollection.TryGetStat (RPGStatType.Spirit, out stat)) {
+					bufferValue = stat.StatValue;
+				}
+			}
+
+			ModifyStat (targetStat, (int)((rawValue < 0) ? (-1) : (1) * rawValue * rawValue / bufferValue));
+		}
+
+		public void ModifyStat(RPGStatType statName,float value){
+			RPGVital stat = null;
+			if (StatCollection.TryGetStat<RPGVital> (statName, out stat)) {
+				stat.StatValueCurrent += value;
+			}
 		}
 
 		#endregion

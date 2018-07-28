@@ -100,7 +100,7 @@ namespace GameSystems.Effects{
 						// this effect should only apply to perceivable that has stats component
 						IHasStats target = percept.Entity.GetComponent<IHasStats> (); 
 						if (target != null) {
-							target.ModifyStat (TargetStat, Modifier, FlatValue, baseValue);
+							target.ModifyStat (StatBase, TargetStat, Modifier, FlatValue, baseValue);
 						}
 					}
 				}

@@ -180,6 +180,7 @@ MonoBehaviour:
   _movementComp: {fileID: 0}
   _gambitCollection: {fileID: 0}
   _skillCollection: {fileID: 0}
+  _statCollection: {fileID: 0}
   _entityId: -1
 --- !u!114 &333431487
 MonoBehaviour:
@@ -726,6 +727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1428455374}
   - component: {fileID: 1428455371}
+  - component: {fileID: 1428455372}
   m_Layer: 0
   m_Name: Entity (1)
   m_TagString: Untagged
@@ -751,7 +753,21 @@ MonoBehaviour:
   _movementComp: {fileID: 0}
   _gambitCollection: {fileID: 0}
   _skillCollection: {fileID: 0}
+  _statCollection: {fileID: 0}
   _entityId: -1
+--- !u!114 &1428455372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1428455370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172ba00023166314c897a33ff0cffce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statCollectionId: 1
+  _normalLevel: 1
 --- !u!4 &1428455374
 Transform:
   m_ObjectHideFlags: 0

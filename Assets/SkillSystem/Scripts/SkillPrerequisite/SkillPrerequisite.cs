@@ -35,15 +35,15 @@ namespace GameSystems.SkillSystem{
 		/// called when a skill is used on the stat owner
 		/// </summary>
 		public void ApplyPrerequisite(IHasStats affected){
-			//affected.ModifyStat (StatName, -StatValue);
+			affected.ModifyStat (StatName, -StatValue);
 		}
 
 		/// <summary>
 		/// check whether this prerequisite is met
 		/// </summary>
 		public bool CheckPrerequisite(IHasStats statOwner){
-			int statValue = 0;
-			if(statOwner.TryGetStatValue(StatName,out statValue)){
+			float statValue = 0;
+			if(statOwner.TryGetStatCurrentValue(StatName,out statValue)){
 			//if(statOwner.TryGetStatValue("health",out statValue)){
 				if (statValue >= StatValue)
 					return true;
