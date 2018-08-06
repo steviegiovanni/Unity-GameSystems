@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using GameSystems.Effects;
 
 namespace GameSystems.Items{
+	/// <summary>
+	/// item class that is usable
+	/// </summary>
 	public class UsableItem : Item
 	{
+		/// <summary>
+		/// the user of the item, assigned during runtime
+		/// </summary>
 		private GameObject _user;
 		public GameObject User{
 			get{ return _user; }
@@ -24,8 +30,15 @@ namespace GameSystems.Items{
 			}
 		}
 
-		public IEnumerator ItemCoroutine(){
-			yield return null;
+		/// <summary>
+		/// will be called when the item is used. just go through each effect and apply
+		/// unlike with skills all effects are instantaneous
+		/// </summary>
+		public void UseItem(){
+			Debug.Log ("Using " + Name);
+			for (int i = 0; i < Effects.Count; i++) {
+				Effects [i].ApplyEffect ();
+			}
 		}
 	}
 }

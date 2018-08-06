@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assets>
+  <Asset Id="1" Name="lala" Type="ItemAsset">
+    <Stackable>True</Stackable>
+  </Asset>
+  <Asset Id="2" Name="lili" Type="ItemAsset">
+    <Stackable>False</Stackable>
+  </Asset>
+</Assets>

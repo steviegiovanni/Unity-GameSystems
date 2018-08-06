@@ -61,12 +61,12 @@ namespace RPGSystems.StatSystem.Editor {
         public override void DisplayGUIFooter() {
             base.DisplayGUIFooter();
 
-                if (GUILayout.Button("Generate Enum", EditorStyles.toolbarButton) &&
-                    EditorUtility.DisplayDialog("Generate Enum", "Generating Stat Type enum will " +
-                    "remove all changes made to the RPGStatType script file. Are you sure you want " +
-                    "to generate?", "Generate", "Cancel")) {
-                    RPGStatTypeGenerator.CheckAndGenerateFile();
-                }
+            if (GUILayout.Button("Generate Enum", EditorStyles.toolbarButton) &&
+                EditorUtility.DisplayDialog("Generate Enum", "Generating Stat Type enum will " +
+                "remove all changes made to the RPGStatType script file. Are you sure you want " +
+                "to generate?", "Generate", "Cancel")) {
+                RPGStatTypeGenerator.CheckAndGenerateFile();
             }
+        }
     }
 }

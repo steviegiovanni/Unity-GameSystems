@@ -5,7 +5,7 @@ namespace GameSystems.Items{
 	public class TargetUsable : UsableItem, IHasTargetEffects
 	{
 		/// <summary>
-		/// the target of the item
+		/// the target of the item, assigned on runtime
 		/// </summary>
 		private GameObject _target;
 		public GameObject Target {

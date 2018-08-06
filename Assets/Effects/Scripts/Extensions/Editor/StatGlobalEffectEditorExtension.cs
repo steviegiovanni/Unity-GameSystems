@@ -17,6 +17,7 @@ namespace GameSystems.Effects.Editor{
 
 		public override void OnGUI (object asset)
 		{
+			Debug.Log ("slkgfdslfdghslfkjg");
 			StatGlobalEffectAsset effectAsset = asset as StatGlobalEffectAsset;
 
 			GUILayout.BeginHorizontal ();
