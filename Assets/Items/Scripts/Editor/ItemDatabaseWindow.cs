@@ -10,6 +10,17 @@ namespace GameSystems.Items.Editor{
 	public class ItemDatabaseWindow : XmlDatabaseWindowSimple<ItemAsset> {
 		private ItemDatabase _database = null;
 
+		private int _selectedEffectIndex = -1;
+		public int SelectedEffectIndex{
+			get{ return _selectedEffectIndex;}
+			set{ 
+				if (_selectedEffectIndex != value) {
+					_selectedEffectIndex = value;
+					EditorGUI.FocusTextInControl (string.Empty);
+				}
+			}
+		}
+
 		[MenuItem("Window/Game Systems/Item Database")]
 		static public void ShowWindow() {
 			var wnd = GetWindow<ItemDatabaseWindow>();
@@ -39,10 +50,14 @@ namespace GameSystems.Items.Editor{
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginVertical (EditorStyles.helpBox);
-			foreach (var extension in ItemEditorUtility.GetExtensions()) {
+			if (typeof(UsableItemAsset).IsAssignableFrom (asset.GetType ())) {
+				(new UsableItemEditorExtension ()).OnGUI (asset, this);
+			}
+
+			/*foreach (var extension in ItemEditorUtility.GetExtensions()) {
 				if (extension.CanHandleType (asset.GetType()))
 					extension.OnGUI (asset);
-			}
+			}*/
 			GUILayout.EndVertical ();
 
 			GUILayout.EndVertical();

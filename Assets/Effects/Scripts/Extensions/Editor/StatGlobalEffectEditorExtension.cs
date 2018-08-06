@@ -32,7 +32,7 @@ namespace GameSystems.Effects.Editor{
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label ("Target Stat Name", GUILayout.Width (150));
-			var targetStatType = RPGStatTypeDatabase.Instance.Get(effectAsset.StatBase, true);
+			var targetStatType = RPGStatTypeDatabase.Instance.Get(effectAsset.TargetStat, true);
 			if (GUILayout.Button(targetStatType == null ? "Assign Type" : targetStatType.Name, EditorStyles.toolbarButton, GUILayout.Width(100))) {
 				XmlDatabaseEditorUtility.ShowContext(RPGStatTypeDatabase.Instance, (statTypeAsset) => {
 					effectAsset.TargetStat = statTypeAsset.Id;

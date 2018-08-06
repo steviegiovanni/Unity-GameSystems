@@ -2,7 +2,7 @@
 using GameSystems.Effects;
 
 namespace GameSystems.Items{
-	public class PositionUsable : UsableItem, IHasPositionEffects
+	public class PositionUsableItem : UsableItem, IHasPositionEffects
 	{
 		/// <summary>
 		/// The position for the item
@@ -21,6 +21,8 @@ namespace GameSystems.Items{
 		}
 
 		#endregion
+
+		public PositionUsableItem(PositionUsableItemAsset asset):base(asset){}
 	}
 }
 

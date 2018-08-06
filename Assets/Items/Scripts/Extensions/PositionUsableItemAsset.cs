@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionUsableItemAsset : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+namespace GameSystems.Items{
+	public class PositionUsableItemAsset : UsableItemAsset {
+		public PositionUsableItemAsset():base(){}
+		public PositionUsableItemAsset(int id): base(id){}
 	}
 }

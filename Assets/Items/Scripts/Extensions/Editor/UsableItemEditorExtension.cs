@@ -58,31 +58,32 @@ namespace GameSystems.Items.Editor{
 			}
 
 			if(GUILayout.Button("Add Effect", EditorStyles.toolbarButton)){
-				/*if (typeof(PositionSkillAsset).IsAssignableFrom (skill.GetType ())) {
+				Debug.Log (itemAsset.GetType ().ToString());
+				if (typeof(PositionUsableItemAsset).IsAssignableFrom (itemAsset.GetType ())) {
 					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetPositionEffectNames (), (index) => {
-						var skillEffectAsset = EffectEditorUtility.CreatePositionEffectAsset (index);
-						skill.Effects.Add (skillEffectAsset);
-						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
+						var itemEffectAsset = EffectEditorUtility.CreatePositionEffectAsset (index);
+						itemAsset.Effects.Add (itemEffectAsset);
+						EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
 					}).ShowAsContext ();
-				} else if (typeof(TargetSkillAsset).IsAssignableFrom (skill.GetType ())) {
+				} else if (typeof(TargetUsableItemAsset).IsAssignableFrom (itemAsset.GetType ())) {
 					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetTargetEffectNames (), (index) => {
-						var skillEffectAsset = EffectEditorUtility.CreateTargetEffectAsset (index);
-						skill.Effects.Add (skillEffectAsset);
-						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
+						var itemEffectAsset = EffectEditorUtility.CreateTargetEffectAsset (index);
+						itemAsset.Effects.Add (itemEffectAsset);
+						EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
 					}).ShowAsContext ();
-				} else {*/
-				XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetNames (), (index) => {
-					var skillEffectAsset = EffectEditorUtility.CreateAsset (index);
-					itemAsset.Effects.Add (skillEffectAsset);
-					EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
-				}).ShowAsContext ();
-				//}
+				} else {
+					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetNames (), (index) => {
+						var skillEffectAsset = EffectEditorUtility.CreateAsset (index);
+						itemAsset.Effects.Add (skillEffectAsset);
+						EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
+					}).ShowAsContext ();
+				}
 			}
 
 			GUILayout.EndVertical ();
 		}
 
-		public override void OnGUI (object asset, ItemDatabaseWindow itemDBWindow)
+		public void OnGUI (object asset, ItemDatabaseWindow itemDBWindow)
 		{
 			GUILayout.BeginVertical ();
 
@@ -96,43 +97,50 @@ namespace GameSystems.Items.Editor{
 					itemAsset.Effects.RemoveAt (i);
 				}
 
-				GUILayout.Label (effect.GetType ().Name, ToggleButtonStyle);
-				GUILayout.EndHorizontal ();
-
-
-				GUILayout.BeginVertical ();
-				foreach (var extension in EffectEditorUtility.GetExtensions()) {
-					Debug.Log (effect.GetType ().ToString ());
-					if (extension.CanHandleType (effect.GetType ())) {
-						extension.OnGUI (effect);
+				bool clicked = GUILayout.Toggle (i == itemDBWindow.SelectedEffectIndex, effect.GetType ().Name, ToggleButtonStyle, GUILayout.Width(150));
+				if (clicked != (i == itemDBWindow.SelectedEffectIndex)) {
+					if (clicked) {
+						itemDBWindow.SelectedEffectIndex = i;
+						GUI.FocusControl (null);
 					} else {
-						Debug.Log (extension.GetType ().ToString ());
+						itemDBWindow.SelectedEffectIndex = -1;
 					}
 				}
-				GUILayout.EndVertical ();
+				GUILayout.EndHorizontal ();
+
+				if (itemDBWindow.SelectedEffectIndex == i) {
+					GUILayout.BeginVertical ();
+					foreach (var extension in EffectEditorUtility.GetExtensions()) {
+						if (extension.CanHandleType (effect.GetType ())) {
+							extension.OnGUI (effect);
+						}
+					}
+					GUILayout.EndVertical ();
+				}
 
 			}
 
 			if(GUILayout.Button("Add Effect", EditorStyles.toolbarButton)){
-				/*if (typeof(PositionSkillAsset).IsAssignableFrom (skill.GetType ())) {
+				Debug.Log (itemAsset.GetType ().ToString());
+				if (typeof(PositionUsableItemAsset).IsAssignableFrom (itemAsset.GetType ())) {
 					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetPositionEffectNames (), (index) => {
-						var skillEffectAsset = EffectEditorUtility.CreatePositionEffectAsset (index);
-						skill.Effects.Add (skillEffectAsset);
-						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
+						var itemEffectAsset = EffectEditorUtility.CreatePositionEffectAsset (index);
+						itemAsset.Effects.Add (itemEffectAsset);
+						EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
 					}).ShowAsContext ();
-				} else if (typeof(TargetSkillAsset).IsAssignableFrom (skill.GetType ())) {
+				} else if (typeof(TargetUsableItemAsset).IsAssignableFrom (itemAsset.GetType ())) {
 					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetTargetEffectNames (), (index) => {
-						var skillEffectAsset = EffectEditorUtility.CreateTargetEffectAsset (index);
-						skill.Effects.Add (skillEffectAsset);
-						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
+						var itemEffectAsset = EffectEditorUtility.CreateTargetEffectAsset (index);
+						itemAsset.Effects.Add (itemEffectAsset);
+						EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
 					}).ShowAsContext ();
-				} else {*/
-				XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetNames (), (index) => {
-					var skillEffectAsset = EffectEditorUtility.CreateAsset (index);
-					itemAsset.Effects.Add (skillEffectAsset);
-					EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
-				}).ShowAsContext ();
-				//}
+				} else {
+					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetNames (), (index) => {
+						var skillEffectAsset = EffectEditorUtility.CreateAsset (index);
+						itemAsset.Effects.Add (skillEffectAsset);
+						EditorWindow.FocusWindowIfItsOpen<ItemDatabaseWindow> ();
+					}).ShowAsContext ();
+				}
 			}
 
 			GUILayout.EndVertical ();

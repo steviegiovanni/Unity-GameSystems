@@ -11,10 +11,6 @@ namespace GameSystems.Items{
 		public ItemAsset(int id):base(id){
 			Stackable = false;
 		}
-
-		public virtual Item CreateInstance(){
-			return new Item (this);
-		}
 			
 		public override void OnSaveAsset (System.Xml.XmlWriter writer)
 		{

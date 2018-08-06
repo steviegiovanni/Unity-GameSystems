@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace GameSystems.Items{
-	public class TargetUsable : UsableItem, IHasTargetEffects
+	public class TargetUsableItem : UsableItem, IHasTargetEffects
 	{
 		/// <summary>
 		/// the target of the item, assigned on runtime
@@ -21,6 +21,8 @@ namespace GameSystems.Items{
 		}
 
 		#endregion
+
+		public TargetUsableItem(TargetUsableItemAsset asset):base(asset){}
 	}
 }
 

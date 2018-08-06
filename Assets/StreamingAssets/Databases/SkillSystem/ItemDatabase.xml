@@ -6,4 +6,15 @@
   <Asset Id="2" Name="lili" Type="ItemAsset">
     <Stackable>False</Stackable>
   </Asset>
+  <Asset Id="3" Name="lalilu" Type="UsableItemAsset">
+    <Stackable>True</Stackable>
+    <Effect AssetType="StatGlobalEffectAsset" Delay="0" TargetType="-1" IncludeSelf="True" Modifier="5" StatBase="0" FlatValue="10" TargetStat="0" />
+    <Effect AssetType="EffectAsset" Delay="0" />
+  </Asset>
+  <Asset Id="4" Name="shalalala" Type="TargetUsableItemAsset">
+    <Stackable>False</Stackable>
+    <Effect AssetType="TargetStatEffectAsset" Delay="0" Modifier="6" StatBase="1" FlatValue="6" TargetStat="2" />
+    <TargetType>0</TargetType>
+    <IncludeSelf>False</IncludeSelf>
+  </Asset>
 </Assets>

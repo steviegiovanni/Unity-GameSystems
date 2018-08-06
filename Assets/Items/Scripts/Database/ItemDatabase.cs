@@ -21,7 +21,13 @@ namespace GameSystems.Items.Database{
 
 		public override ItemAsset CreateAssetOfType(string type) {
 			if (type == typeof(ItemAsset).Name) {
-				return new ItemAsset(this.GetNextHighestId());
+				return new ItemAsset (this.GetNextHighestId ());
+			} else if (type == typeof(UsableItemAsset).Name) {
+				return new UsableItemAsset (this.GetNextHighestId ());
+			} else if (type == typeof(PositionUsableItemAsset).Name) {
+				return new PositionUsableItemAsset (this.GetNextHighestId ());
+			}	else if (type == typeof(TargetUsableItemAsset).Name) {
+				return new TargetUsableItemAsset (this.GetNextHighestId ());
 			}
 			return null;
 		}

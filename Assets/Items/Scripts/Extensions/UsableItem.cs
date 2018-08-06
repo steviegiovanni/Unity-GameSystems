@@ -7,8 +7,17 @@ namespace GameSystems.Items{
 	/// <summary>
 	/// item class that is usable
 	/// </summary>
-	public class UsableItem : Item
+	public class UsableItem : Item, IHasEffects
 	{
+		#region IHasEffects implementation
+
+		public GameObject GetOwner ()
+		{
+			return User;
+		}
+
+		#endregion
+
 		/// <summary>
 		/// the user of the item, assigned during runtime
 		/// </summary>
@@ -38,6 +47,13 @@ namespace GameSystems.Items{
 			Debug.Log ("Using " + Name);
 			for (int i = 0; i < Effects.Count; i++) {
 				Effects [i].ApplyEffect ();
+			}
+		}
+
+		public UsableItem(UsableItemAsset asset):base(asset){
+			foreach (var effect in asset.Effects) {
+				this.Effects.Add (effect.CreateInstance ());
+				this.Effects [this.Effects.Count - 1].Source = this;
 			}
 		}
 	}

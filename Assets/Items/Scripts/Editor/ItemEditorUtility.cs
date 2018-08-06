@@ -26,6 +26,10 @@ namespace GameSystems.Items.Editor{
 				return new ItemAsset();
 			case 1:
 				return new UsableItemAsset ();
+			case 2:
+				return new PositionUsableItemAsset ();
+			case 3:
+				return new TargetUsableItemAsset ();
 			default:
 				return null;
 			}
@@ -37,7 +41,9 @@ namespace GameSystems.Items.Editor{
 		static public string[] GetNames(){
 			return new string[] {
 				"Item",
-				"UsableItem"
+				"UsableItem",
+				"PositionUsableItem",
+				"TargetUsableItem"
 			};
 		}
 	}
