@@ -10,7 +10,8 @@ namespace GameSystems.Items.Editor{
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
-				new UsableItemEditorExtension()
+				new UsableItemEditorExtension(),
+				new EquipmentEditorExtension()
 			};
 		}
 
@@ -30,6 +31,8 @@ namespace GameSystems.Items.Editor{
 				return new PositionUsableItemAsset ();
 			case 3:
 				return new TargetUsableItemAsset ();
+			case 4:
+				return new EquipmentAsset ();
 			default:
 				return null;
 			}
@@ -43,7 +46,8 @@ namespace GameSystems.Items.Editor{
 				"Item",
 				"UsableItem",
 				"PositionUsableItem",
-				"TargetUsableItem"
+				"TargetUsableItem",
+				"Equipment"
 			};
 		}
 	}

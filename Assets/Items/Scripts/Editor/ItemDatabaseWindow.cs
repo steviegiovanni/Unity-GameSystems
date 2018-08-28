@@ -52,6 +52,8 @@ namespace GameSystems.Items.Editor{
 			GUILayout.BeginVertical (EditorStyles.helpBox);
 			if (typeof(UsableItemAsset).IsAssignableFrom (asset.GetType ())) {
 				(new UsableItemEditorExtension ()).OnGUI (asset, this);
+			} else if (typeof(EquipmentAsset).IsAssignableFrom (asset.GetType ())) {
+				(new EquipmentEditorExtension ()).OnGUI (asset, this);
 			}
 
 			/*foreach (var extension in ItemEditorUtility.GetExtensions()) {
