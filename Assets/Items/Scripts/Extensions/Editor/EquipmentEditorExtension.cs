@@ -6,6 +6,7 @@ using System;
 using UnityEditor;
 using RPGSystems.StatSystem;
 using RPGSystems.StatSystem.Editor;
+using RPGSystems.StatSystem.Database;
 
 
 namespace GameSystems.Items.Editor{
@@ -39,10 +40,10 @@ namespace GameSystems.Items.Editor{
 			GUILayout.BeginHorizontal (EditorStyles.toolbar);
 
 			GUILayout.Label (" ", EditorStyles.toolbarButton, GUILayout.Width (30));
-			GUILayout.Label("Type");
-			GUILayout.Label("StatId");
-			GUILayout.Label("Value");
-			GUILayout.Label("Stacks");
+			GUILayout.Label("Type", EditorStyles.toolbarButton);
+			GUILayout.Button("StatId",EditorStyles.toolbarButton);
+			GUILayout.Label("Value",EditorStyles.toolbarButton, GUILayout.Width (50));
+			GUILayout.Label("Stacks",EditorStyles.toolbarButton, GUILayout.Width (50));
 
 			/*bool clicked = GUILayout.Toggle (i == itemDBWindow.SelectedEffectIndex, modifier.GetType ().Name, ToggleButtonStyle, GUILayout.Width(150));
 				if (clicked != (i == itemDBWindow.SelectedEffectIndex)) {
@@ -64,10 +65,20 @@ namespace GameSystems.Items.Editor{
 					itemAsset.Mods.RemoveAt (i);
 				}
 
-				GUILayout.Label(modifier.GetType ().Name);
-				modifier.assignedStatId = EditorGUILayout.IntField (modifier.assignedStatId);
-				modifier.value = EditorGUILayout.FloatField (modifier.value);
-				modifier.stacks = EditorGUILayout.Toggle (modifier.stacks);
+				GUILayout.Label(modifier.GetType ().Name,EditorStyles.toolbarButton);
+				//modifier.AssignedStatId = EditorGUILayout.IntField (modifier.AssignedStatId);
+
+				var statType = RPGStatTypeDatabase.Instance.Get(modifier.AssignedStatId, true);
+				if (GUILayout.Button(statType == null ? "Assign Stat" : statType.Name, EditorStyles.toolbarButton)) {
+					XmlDatabaseEditorUtility.ShowContext(RPGStatTypeDatabase.Instance, (statTypeAsset) => {
+						modifier.AssignedStatId = statTypeAsset.Id;
+						Debug.Log("Assigning stat to stat type " + statTypeAsset.Id);
+					}, typeof(RPGStatTypeWindow));
+				}
+
+
+				modifier.Value = EditorGUILayout.FloatField (modifier.Value,GUILayout.Width(50));
+				modifier.Stacks = EditorGUILayout.Toggle (modifier.Stacks,GUILayout.Width(50));
 
 				/*bool clicked = GUILayout.Toggle (i == itemDBWindow.SelectedEffectIndex, modifier.GetType ().Name, ToggleButtonStyle, GUILayout.Width(150));
 				if (clicked != (i == itemDBWindow.SelectedEffectIndex)) {

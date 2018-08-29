@@ -7,23 +7,23 @@ using System.Xml;
 namespace RPGSystems.StatSystem {
     [System.Serializable]
     public abstract class RPGStatModifierAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
-        public int assignedStatId;
+        public int AssignedStatId;
 
-        public float value;
-        public bool stacks;
+        public float Value;
+        public bool Stacks;
 
         public abstract RPGStatModifier CreateInstance();
 
 		protected virtual T Internal_CreateInstance<T>() where T : RPGStatModifier {
             var mod = System.Activator.CreateInstance<T>() as RPGStatModifier;
-            mod.Value = value;
-            mod.Stacks = stacks;
+            mod.Value = Value;
+            mod.Stacks = Stacks;
             return mod as T;
         }
 
         public void OnSaveAsset(XmlWriter writer) {
-            writer.WriteAttributeString("Value", value.ToString());
-            writer.WriteAttributeString("Stacks", stacks.ToString());
+            writer.WriteAttributeString("Value", Value.ToString());
+            writer.WriteAttributeString("Stacks", Stacks.ToString());
         }
 
         public void OnLoadAsset(XmlReader reader) {
